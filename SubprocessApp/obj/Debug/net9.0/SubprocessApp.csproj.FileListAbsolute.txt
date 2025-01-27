@@ -1,0 +1,14 @@
+E:\Programs\Cs\DiscordRichPresenceApp\SubprocessApp\bin\Debug\net9.0\SubprocessApp.exe
+E:\Programs\Cs\DiscordRichPresenceApp\SubprocessApp\bin\Debug\net9.0\SubprocessApp.deps.json
+E:\Programs\Cs\DiscordRichPresenceApp\SubprocessApp\bin\Debug\net9.0\SubprocessApp.runtimeconfig.json
+E:\Programs\Cs\DiscordRichPresenceApp\SubprocessApp\bin\Debug\net9.0\SubprocessApp.dll
+E:\Programs\Cs\DiscordRichPresenceApp\SubprocessApp\bin\Debug\net9.0\SubprocessApp.pdb
+E:\Programs\Cs\DiscordRichPresenceApp\SubprocessApp\obj\Debug\net9.0\SubprocessApp.GeneratedMSBuildEditorConfig.editorconfig
+E:\Programs\Cs\DiscordRichPresenceApp\SubprocessApp\obj\Debug\net9.0\SubprocessApp.AssemblyInfoInputs.cache
+E:\Programs\Cs\DiscordRichPresenceApp\SubprocessApp\obj\Debug\net9.0\SubprocessApp.AssemblyInfo.cs
+E:\Programs\Cs\DiscordRichPresenceApp\SubprocessApp\obj\Debug\net9.0\SubprocessApp.csproj.CoreCompileInputs.cache
+E:\Programs\Cs\DiscordRichPresenceApp\SubprocessApp\obj\Debug\net9.0\SubprocessApp.dll
+E:\Programs\Cs\DiscordRichPresenceApp\SubprocessApp\obj\Debug\net9.0\refint\SubprocessApp.dll
+E:\Programs\Cs\DiscordRichPresenceApp\SubprocessApp\obj\Debug\net9.0\SubprocessApp.pdb
+E:\Programs\Cs\DiscordRichPresenceApp\SubprocessApp\obj\Debug\net9.0\SubprocessApp.genruntimeconfig.cache
+E:\Programs\Cs\DiscordRichPresenceApp\SubprocessApp\obj\Debug\net9.0\ref\SubprocessApp.dll

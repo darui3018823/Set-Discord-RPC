@@ -1,0 +1,5 @@
+E:\Programs\Cs\DiscordRichPresenceApp\build\MainApp\MainApp.exe
+E:\Programs\Cs\DiscordRichPresenceApp\build\MainApp\MainApp.dll
+E:\Programs\Cs\DiscordRichPresenceApp\build\MainApp\MainApp.deps.json
+E:\Programs\Cs\DiscordRichPresenceApp\build\MainApp\MainApp.runtimeconfig.json
+E:\Programs\Cs\DiscordRichPresenceApp\build\MainApp\MainApp.pdb

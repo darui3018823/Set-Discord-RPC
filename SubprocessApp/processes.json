@@ -1,0 +1,49 @@
+{
+    "AppleMusic.exe": {
+        "ClientId": "1332711786855665745",
+        "State": null,
+        "Details": "Listen on Apple Music",
+        "LargeImage": "apple_music_icon_rgb_lg_073120",
+        "LargeImageText": "Apple Music",
+        "SmallImage": null,
+        "SmallImageText": null,
+        "Buttons": [
+            {"Label": "Apple Music Web Player", "Url": "https://music.apple.com/"}
+        ],
+        "PartyId": "AppleMusic_party",
+        "PartySize": [1, 1],
+        "Priority": 1
+    },
+    "Blend.exe": {
+        "ClientId": "1333146310072729610",
+        "State": "Editing XAML in MS Blend",
+        "Details": "Microsoft Blend for Visual Studio 2022",
+        "LargeImage": "msb-for-vs2022",
+        "LargeImageText": "Blend for Visual Studio 2022",
+        "SmallImage": "visual_studio_2022_icon",
+        "SmallImageText": "Microsoft Visual Studio 2022",
+        "Buttons": [
+            {"Label": "Visual Studio", "Url": "https://visualstudio.microsoft.com/ja/"},
+            {"Label": "Learn Blend for Visual Studio", "Url": "https://learn.microsoft.com/ja-jp/visualstudio/xaml-tools/creating-a-ui-by-using-blend-for-visual-studio?view=vs-2022"}
+        ],
+        "PartyId": "Blend_party",
+        "PartySize": [1, 1],
+        "Priority": 2
+    },
+    "gimp-2.10.exe": {
+        "ClientId": "1333155426610581637",
+        "State": null,
+        "Details": "Editing an Image",
+        "LargeImage": "gimp_logo",
+        "LargeImageText": "GIMP 2.10.38",
+        "SmallImage": null,
+        "SmallImageText": null,
+        "Buttons": [
+            {"Label": "GIMP Official Website", "Url": "https://www.gimp.org/"},
+            {"Label": "Learn GIMP", "Url": "https://docs.gimp.org/2.10/en/"}
+        ],
+        "PartyId": null,
+        "PartySize": [1, 1],
+        "Priority": 3
+    }
+}

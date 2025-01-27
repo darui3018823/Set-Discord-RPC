@@ -1,0 +1,7 @@
+E:\Programs\Cs\DiscordRichPresenceApp\build\SubApp\SubApp.exe
+E:\Programs\Cs\DiscordRichPresenceApp\build\SubApp\SubApp.dll
+E:\Programs\Cs\DiscordRichPresenceApp\build\SubApp\SubApp.deps.json
+E:\Programs\Cs\DiscordRichPresenceApp\build\SubApp\SubApp.runtimeconfig.json
+E:\Programs\Cs\DiscordRichPresenceApp\build\SubApp\SubApp.pdb
+E:\Programs\Cs\DiscordRichPresenceApp\build\SubApp\DiscordRPC.dll
+E:\Programs\Cs\DiscordRichPresenceApp\build\SubApp\Newtonsoft.Json.dll
