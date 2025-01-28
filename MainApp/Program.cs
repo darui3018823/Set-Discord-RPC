@@ -107,3 +107,5 @@ public class Button
     public string Label { get; set; } = string.Empty;
     public string Url { get; set; } = string.Empty;
 }
+
+// Subに渡すところか起動‣終了のどこかがおかしい
