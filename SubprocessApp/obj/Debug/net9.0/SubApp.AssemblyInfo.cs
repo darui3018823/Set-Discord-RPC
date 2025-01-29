@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("MainApp")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("SubApp")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a50232e9215bdda26e1a99f75dda3ce2eabfe3fb")]
-[assembly: System.Reflection.AssemblyProductAttribute("MainApp")]
-[assembly: System.Reflection.AssemblyTitleAttribute("MainApp")]
+[assembly: System.Reflection.AssemblyProductAttribute("SubApp")]
+[assembly: System.Reflection.AssemblyTitleAttribute("SubApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // MSBuild WriteCodeFragment クラスによって生成されました。
