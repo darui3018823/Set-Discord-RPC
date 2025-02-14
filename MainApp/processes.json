@@ -45,5 +45,18 @@
         "PartyId": null,
         "PartySize": [1, 1],
         "Priority": 3
+    },
+    "RemotePlay.exe": {
+        "ClientId": "1333155426610581637",
+        "State": "Playing on PS5",
+        "Details": "Streaming via Remote Play",
+        "LargeImage": "ps_remote_play",
+        "LargeImageText": "PS Remote Play",
+        "Buttons": [
+            {"Label": "Start Remote Play", "Url": "https://remoteplay.dl.playstation.net/remoteplay/lang/jp/index.html"}
+        ],
+        "PartyId": "PS5_RemotePlay",
+        "PartySize": [1, 1],
+        "Priority": 4
     }
 }
