@@ -61,8 +61,8 @@
     },
     "ImStudying.exe": {
         "ClientId": "1341082472825225237",
-        "State": "Studying",
-        "Details": "I'm Studying, Please don't disturb me.",
+        "State": "I'm Studying, Please don't disturb me.",
+        "Details": "If you see this, you should also learn more than Discord.",
         "LargeImage": "studyingnow",
         "LargeImageText": "Study",
         "SmallImage": "thinking",
