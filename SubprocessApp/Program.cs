@@ -45,7 +45,7 @@ class SubApp
             },
             Buttons = config.Buttons?.ConvertAll(button => new DiscordRPC.Button
             {
-                Label = button.Label,
+                Label = button.Label.Length > 32 ? button.Label.Substring(0, 32) : button.Label,
                 Url = button.Url
             }).ToArray(),
             Timestamps = Timestamps.Now

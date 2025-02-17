@@ -68,8 +68,7 @@
         "SmallImage": "thinking",
         "SmallImageText": "u need study",
         "Buttons": [
-            {"Label": "I should read the paper with him.", "Url": "https://chatgpt.com/"},
-            {"Label": "Just reading Wikipedia is enough to learn", "Url": "https://ja.wikipedia.org/wiki/Main_Page"}
+            {"Label": "Just Wikipedia is enough to learn.", "Url": "https://ja.wikipedia.org/wiki/Main_Page"}
         ],
         "PartyId": null,
         "PartySize": [1, 1],
