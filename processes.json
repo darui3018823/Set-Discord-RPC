@@ -47,7 +47,7 @@
         "Priority": 3
     },
     "RemotePlay.exe": {
-        "ClientId": "1333155426610581637",
+        "ClientId": "1339960892141473882",
         "State": "Playing on PS5",
         "Details": "Streaming via Remote Play",
         "LargeImage": "ps_remote_play",
@@ -58,5 +58,21 @@
         "PartyId": "PS5_RemotePlay",
         "PartySize": [1, 1],
         "Priority": 4
+    },
+    "ImStudying.exe": {
+        "ClientId": "1341082472825225237",
+        "State": "I'm Studying, Please don't disturb me.",
+        "Details": "If you see this, you should also learn more than Discord.",
+        "LargeImage": "studyingnow",
+        "LargeImageText": "Study",
+        "SmallImage": "thinking",
+        "SmallImageText": "u need study",
+        "Buttons": [
+            {"Label": "I should read the paper with him.", "Url": "https://chatgpt.com/"},
+            {"Label": "Just reading Wikipedia is enough to learn", "Url": "https://ja.wikipedia.org/wiki/Main_Page"}
+        ],
+        "PartyId": null,
+        "PartySize": [1, 1],
+        "Priority": 5
     }
 }
