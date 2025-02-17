@@ -68,7 +68,7 @@
         "SmallImage": "thinking",
         "SmallImageText": "u need study",
         "Buttons": [
-            {"Label": "Just Wikipedia is enough to learn.", "Url": "https://ja.wikipedia.org/wiki/Main_Page"}
+            {"Label": "Wikipedia is enough to learn.", "Url": "https://ja.wikipedia.org/wiki/Main_Page"}
         ],
         "PartyId": null,
         "PartySize": [1, 1],
