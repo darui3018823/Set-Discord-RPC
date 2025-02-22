@@ -28,33 +28,51 @@ class Program
             .Select(p => p.ProcessName)
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-        return config.Keys.Where(key => runningProcesses.Contains(Path.GetFileNameWithoutExtension(key))).ToList();
+        return config.Keys
+            .Where(key => runningProcesses.Contains(Path.GetFileNameWithoutExtension(key)))
+            .ToList();
     }
 
     static void Main(string[] args)
     {
         var config = LoadConfig();
-        var activeProcesses = new HashSet<string>();
-        var subprocesses = new Dictionary<string, Process>(); // 起動したサブプロセスを管理
+        var activeProcesses = new HashSet<string>(); // 現在起動中のプロセス
+        var subprocesses = new Dictionary<string, Process>(); // 各プロセスに対応する `SubApp.exe`
+        var lastStartedProcesses = new Dictionary<string, DateTime>(); // 直近の起動時間管理
 
         while (true)
         {
             var runningProcesses = GetRunningProcesses(config);
 
-            // 新しいプロセスを検知してサブプロセスを起動
+            // **新しいプロセスを検出し `SubApp.exe` を起動**
             foreach (var processName in runningProcesses)
             {
                 if (!activeProcesses.Contains(processName))
                 {
+                    // **10秒以内の再起動を防止**
+                    if (lastStartedProcesses.ContainsKey(processName) &&
+                        (DateTime.Now - lastStartedProcesses[processName]).TotalSeconds < 10)
+                    {
+                        Console.WriteLine($"Skipping restart of {processName}, too soon.");
+                        continue;
+                    }
+
                     Console.WriteLine($"Starting subprocess for: {processName}");
                     var process = StartSubprocess(processName);
-                    subprocesses[processName] = process;
-                    activeProcesses.Add(processName);
+                    if (process != null)
+                    {
+                        subprocesses[processName] = process;
+                        activeProcesses.Add(processName);
+                        lastStartedProcesses[processName] = DateTime.Now;
+                    }
                 }
             }
 
-            // 終了したプロセスをクリーンアップ
-            var finishedProcesses = activeProcesses.Where(p => subprocesses[p].HasExited).ToList();
+            // **終了した `SubApp.exe` をクリーンアップ**
+            var finishedProcesses = activeProcesses
+                .Where(p => subprocesses.ContainsKey(p) && subprocesses[p] != null && subprocesses[p].HasExited)
+                .ToList();
+
             foreach (var processName in finishedProcesses)
             {
                 Console.WriteLine($"Subprocess for {processName} has exited.");
@@ -62,31 +80,38 @@ class Program
                 activeProcesses.Remove(processName);
             }
 
-            Thread.Sleep(5000); // 監視間隔
+            Thread.Sleep(5000); // **監視間隔**
         }
     }
 
-    static Process StartSubprocess(string processName)
+    static Process? StartSubprocess(string processName)
     {
+        var subAppPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\exe\SubApp.exe");
+        if (!File.Exists(subAppPath))
+        {
+            Console.WriteLine($"[ERROR] SubApp.exe not found at: {subAppPath}");
+            return null;
+        }
+
         var startInfo = new ProcessStartInfo
         {
-            FileName = @"..\exe\SubApp.exe", // 新しいパスを指定
-            Arguments = processName,             // プロセス名を引数として渡す
+            FileName = subAppPath,
+            Arguments = processName,
             UseShellExecute = true,
             CreateNoWindow = false
         };
 
         var process = Process.Start(startInfo);
-
         if (process == null)
         {
-            throw new InvalidOperationException($"Failed to start subprocess for: {processName}");
+            Console.WriteLine($"[ERROR] Failed to start subprocess for: {processName}");
+            return null;
         }
 
+        Console.WriteLine($"Started SubApp for {processName}, PID: {process.Id}");
         return process;
     }
 }
-
 public class ProcessConfig
 {
     public string? ClientId { get; set; }
@@ -107,5 +132,3 @@ public class Button
     public string Label { get; set; } = string.Empty;
     public string Url { get; set; } = string.Empty;
 }
-
-// Subに渡すところか起動‣終了のどこかがおかしい
