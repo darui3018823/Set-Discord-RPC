@@ -1,0 +1,15 @@
+E:\Programs\Cs\DiscordRichPresenceApp\MainApp\bin\Debug\net9.0\MainApp.exe
+E:\Programs\Cs\DiscordRichPresenceApp\MainApp\bin\Debug\net9.0\MainApp.deps.json
+E:\Programs\Cs\DiscordRichPresenceApp\MainApp\bin\Debug\net9.0\MainApp.runtimeconfig.json
+E:\Programs\Cs\DiscordRichPresenceApp\MainApp\bin\Debug\net9.0\MainApp.dll
+E:\Programs\Cs\DiscordRichPresenceApp\MainApp\bin\Debug\net9.0\MainApp.pdb
+E:\Programs\Cs\DiscordRichPresenceApp\MainApp\obj\Debug\net9.0\MainApp.GeneratedMSBuildEditorConfig.editorconfig
+E:\Programs\Cs\DiscordRichPresenceApp\MainApp\obj\Debug\net9.0\MainApp.AssemblyInfoInputs.cache
+E:\Programs\Cs\DiscordRichPresenceApp\MainApp\obj\Debug\net9.0\MainApp.AssemblyInfo.cs
+E:\Programs\Cs\DiscordRichPresenceApp\MainApp\obj\Debug\net9.0\MainApp.csproj.CoreCompileInputs.cache
+E:\Programs\Cs\DiscordRichPresenceApp\MainApp\obj\Debug\net9.0\MainApp.sourcelink.json
+E:\Programs\Cs\DiscordRichPresenceApp\MainApp\obj\Debug\net9.0\MainApp.dll
+E:\Programs\Cs\DiscordRichPresenceApp\MainApp\obj\Debug\net9.0\refint\MainApp.dll
+E:\Programs\Cs\DiscordRichPresenceApp\MainApp\obj\Debug\net9.0\MainApp.pdb
+E:\Programs\Cs\DiscordRichPresenceApp\MainApp\obj\Debug\net9.0\MainApp.genruntimeconfig.cache
+E:\Programs\Cs\DiscordRichPresenceApp\MainApp\obj\Debug\net9.0\ref\MainApp.dll
