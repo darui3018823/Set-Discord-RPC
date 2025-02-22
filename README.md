@@ -51,12 +51,13 @@ cd MainApp/bin/Debug/net9.0
 
 ## **⚙ Configuration**
 You can configure supported applications via `processes.json`.
+<img src="https://raw.githubusercontent.com/darui3018823/Set-Discord-RPC/main/assets/rpcsc.png" width="800">
 ```json
 {
     "AppleMusic.exe": {
         "ClientId": "012345678901234567",
         "State": "Status Message",
-        "Details": "Listen on Apple Music",
+        "Details": "Details",
         "LargeImage": "Apple_Music_Logo",
         "LargeImageText": "Apple Music",
         "SmallImage": "Apple_Logo",
@@ -85,6 +86,11 @@ You can configure supported applications via `processes.json`.
 | `PartyId`       | Optional party ID for multiplayer sessions|
 | `PartySize`     | `[current, max]` number of players in a party|
 | ` Priority`     | Determines which presence gets updated first if multiple are running|
+
+**Currently confirmed issues**<br>
+We are currently fixing an issue with the `State` and `Details` keys.<br>
+If only one of the keys is pressed, it will work properly.<br>
+Other keys work fine. If you have any questions, please post them in the GitHub Issues.
 
 ## **🛠 Project Structure**
 ```sh
