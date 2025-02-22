@@ -1,8 +1,10 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordRichPresenceApp", "DiscordRichPresenceApp.csproj", "{8C091523-8E88-CC42-E9E5-E6613F8832FE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainApp", "MainApp\MainApp.csproj", "{5903E4CB-1CD6-4FBC-9F05-1BA378112A28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubApp", "SubprocessApp\SubApp.csproj", "{9F0C75BB-5631-4DB4-A807-673822B372C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,10 +12,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8C091523-8E88-CC42-E9E5-E6613F8832FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8C091523-8E88-CC42-E9E5-E6613F8832FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8C091523-8E88-CC42-E9E5-E6613F8832FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8C091523-8E88-CC42-E9E5-E6613F8832FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5903E4CB-1CD6-4FBC-9F05-1BA378112A28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5903E4CB-1CD6-4FBC-9F05-1BA378112A28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5903E4CB-1CD6-4FBC-9F05-1BA378112A28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5903E4CB-1CD6-4FBC-9F05-1BA378112A28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F0C75BB-5631-4DB4-A807-673822B372C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F0C75BB-5631-4DB4-A807-673822B372C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F0C75BB-5631-4DB4-A807-673822B372C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F0C75BB-5631-4DB4-A807-673822B372C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
