@@ -107,6 +107,24 @@ Set-Discord-RPC/
 
 ## **📄 License**
 This project is licensed under the [GNU General Public License v3.0](https://github.com/darui3018823/Set-Discord-RPC/blob/main/LICENSE)
+The key conditions of this license are as follows:
+
+### Permissions:
+- **Commercial use**: You can use this software for commercial purposes.
+- **Modification**: You are allowed to modify the source code.
+- **Distribution**: You can distribute this software.
+- **Patent use**: Any relevant patent rights are granted.
+- **Private use**: Personal use is allowed.
+
+### Limitations:
+- **Liability**: No liability is provided for damages caused by using this software.
+- **Warranty**: No warranty is provided for the software.
+
+### Conditions:
+- **License and copyright notice**: You must retain the copyright and license notices.
+- **State changes**: Modifications must be explicitly stated.
+- **Disclose source**: If you distribute a modified version, the source code must also be made available under the same GPLv3 license.
+- **Same license**: Any derivative works must be distributed under the same GPLv3 license.
 
 ## **🎉 Contributing**
 Contributions are welcome! If you find a bug or have a feature request, please open an issue on [GitHub Issues](https://github.com/darui3018823/Set-Discord-RPC/issues). 🚀🔥
