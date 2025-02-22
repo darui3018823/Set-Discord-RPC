@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Threading;
+using DiscordRPC;
+
 
 class Program
 {
@@ -18,6 +20,9 @@ class Program
             var activeProcesses = new HashSet<string>();
             var subprocesses = new Dictionary<string, Process>();
             var lastStartedProcesses = new Dictionary<string, DateTime>();
+
+            // **MainApp が終了するときに SubApp を安全に終了**
+            AppDomain.CurrentDomain.ProcessExit += (sender, e) => CleanupSubProcesses(subprocesses);
 
             while (true)
             {
@@ -54,6 +59,10 @@ class Program
                 foreach (var processName in finishedProcesses)
                 {
                     Log($"Subprocess for {processName} (PID: {subprocesses[processName].Id}) has exited.", "WARN");
+
+                    // **SubApp がクラッシュした場合、RPC をクリア**
+                    ClearPresence(config[processName]);
+
                     subprocesses.Remove(processName);
                     activeProcesses.Remove(processName);
                 }
@@ -74,7 +83,7 @@ class Program
         Console.WriteLine("============================================");
         Console.WriteLine("   Discord Rich Presence Manager");
         Console.WriteLine("   Created by darui3018823");
-        Console.WriteLine("   Version: MainApp Version 1.2.0");
+        Console.WriteLine("   Version: MainApp Version 1.3.0");
         Console.WriteLine("   Repository: https://github.com/darui3018823/Set-Discord-RPC");
         Console.WriteLine("============================================");
         Console.ResetColor();
@@ -106,19 +115,43 @@ class Program
         Console.ResetColor();
     }
 
+    // **MainApp が終了する際に SubApp をクリーンアップ**
+    static void CleanupSubProcesses(Dictionary<string, Process> subprocesses)
+    {
+        Log("Cleaning up all SubApp processes...", "INFO");
+
+        foreach (var process in subprocesses.Values)
+        {
+            if (!process.HasExited)
+            {
+                try
+                {
+                    process.Kill();
+                    Log($"SubApp (PID: {process.Id}) terminated.", "WARN");
+                }
+                catch (Exception ex)
+                {
+                    Log($"Failed to terminate SubApp (PID: {process.Id}): {ex.Message}", "ERROR");
+                }
+            }
+        }
+    }
+
     // **プロセス設定を読み込む**
     static Dictionary<string, ProcessConfig> LoadConfig()
     {
-        string path = "processes.json";
-        if (!File.Exists(path))
+        // `MainApp` のルートにある `processes.json` を使用する
+        string jsonPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\processes.json"));
+
+        if (!File.Exists(jsonPath))
         {
-            Log($"Configuration file not found at: {Path.GetFullPath(path)}", "ERROR");
+            Log($"Configuration file not found at: {jsonPath}", "ERROR");
             Environment.Exit(1);
         }
 
         try
         {
-            var json = File.ReadAllText(path);
+            var json = File.ReadAllText(jsonPath);
             return JsonSerializer.Deserialize<Dictionary<string, ProcessConfig>>(json)
                 ?? throw new InvalidOperationException("Failed to load configuration.");
         }
@@ -168,6 +201,27 @@ class Program
         }
     }
 
+    // **RPC をクリア**
+    static void ClearPresence(ProcessConfig config)
+    {
+        try
+        {
+            Log($"Clearing RPC for Client ID: {config.ClientId}", "INFO");
+
+            using var client = new DiscordRPC.DiscordRpcClient(config.ClientId);
+            client.Initialize();
+            client.ClearPresence();
+            Thread.Sleep(2000); // 反映待機
+            client.Dispose();
+
+            Log($"RPC successfully cleared for Client ID: {config.ClientId}", "INFO");
+        }
+        catch (Exception ex)
+        {
+            Log($"Failed to clear RPC for Client ID {config.ClientId}: {ex.Message}", "ERROR");
+        }
+    }
+
     // **実行中のプロセスを取得**
     static List<string> GetRunningProcesses(Dictionary<string, ProcessConfig> config)
     {
@@ -191,7 +245,6 @@ class Program
     }
 }
 
-// **プロセス設定クラス**
 public class ProcessConfig
 {
     public string? ClientId { get; set; }

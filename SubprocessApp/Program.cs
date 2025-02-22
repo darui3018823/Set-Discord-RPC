@@ -9,6 +9,8 @@ using DiscordRPC;
 
 class SubApp
 {
+    static DiscordRpcClient? client;
+
     static void Main(string[] args)
     {
         PrintStartupMessage();
@@ -30,8 +32,12 @@ class SubApp
 
         try
         {
-            var client = new DiscordRpcClient(config.ClientId);
+            client = new DiscordRpcClient(config.ClientId);
             client.Initialize();
+
+            // **アプリが終了した時の処理を登録**
+            AppDomain.CurrentDomain.ProcessExit += (sender, e) => SafeExit();
+            AppDomain.CurrentDomain.UnhandledException += (sender, e) => SafeExit();
 
             client.SetPresence(new RichPresence()
             {
@@ -64,6 +70,7 @@ class SubApp
                 if (!processExists)
                 {
                     Log($"Process {processName} has exited. Shutting down SubApp...", "WARN");
+                    SafeExit();  // **確実に RPC を削除**
                     break;
                 }
 
@@ -75,6 +82,20 @@ class SubApp
         catch (Exception ex)
         {
             Log($"Unhandled exception: {ex.Message}", "ERROR");
+            SafeExit();  // **例外発生時も RPC を削除**
+        }
+    }
+
+    // **アプリが終了するときに確実に RPC を削除**
+    static void SafeExit()
+    {
+        if (client != null)
+        {
+            Log("Clearing RPC before exit...", "DEBUG");
+            client.ClearPresence();
+            Thread.Sleep(2000); // **2秒待って確実に適用**
+            client.Dispose();
+            Log("RPC successfully cleared.", "INFO");
         }
     }
 
@@ -84,7 +105,7 @@ class SubApp
         Console.WriteLine("============================================");
         Console.WriteLine("   Discord Rich Presence SubApp");
         Console.WriteLine("   Created by darui3018823");
-        Console.WriteLine("   Version: SubApp Version 1.2.0");
+        Console.WriteLine("   Version: SubApp Version 1.3.4");
         Console.WriteLine("   Repository: https://github.com/darui3018823/Set-Discord-RPC");
         Console.WriteLine("============================================");
         Console.ResetColor();
@@ -115,18 +136,16 @@ class SubApp
         Console.ResetColor();
     }
 
-    
     static ProcessConfig? LoadConfig(string processName)
     {
-        string basePath = AppDomain.CurrentDomain.BaseDirectory;
-        string jsonPath1 = Path.Combine(basePath, "processes.json");
-        string jsonPath2 = Path.Combine(basePath, @"..\..\..\processes.json");
-
-        string jsonPath = File.Exists(jsonPath1) ? jsonPath1 : jsonPath2;
+        string jsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\processes.json");
+        jsonPath = Path.GetFullPath(jsonPath);
+        
+        Log($"[DEBUG] Loading config from: {jsonPath}", "DEBUG");
 
         if (!File.Exists(jsonPath))
         {
-            Log($"Configuration file not found at: {jsonPath}", "ERROR");
+            Log($"[ERROR] Configuration file not found at: {jsonPath}", "ERROR");
             return null;
         }
 
@@ -135,11 +154,18 @@ class SubApp
             var json = File.ReadAllText(jsonPath);
             var config = JsonSerializer.Deserialize<Dictionary<string, ProcessConfig>>(json);
 
-            return config != null && config.ContainsKey(processName) ? config[processName] : null;
+            if (config == null || !config.ContainsKey(processName))
+            {
+                Log($"[ERROR] No configuration found for process: {processName}", "ERROR");
+                return null;
+            }
+
+            Log($"[INFO] Successfully loaded configuration for: {processName}", "INFO");
+            return config[processName];
         }
         catch (Exception ex)
         {
-            Log($"Error reading processes.json: {ex.Message}", "ERROR");
+            Log($"[ERROR] Failed to read processes.json: {ex.Message}", "ERROR");
             return null;
         }
     }

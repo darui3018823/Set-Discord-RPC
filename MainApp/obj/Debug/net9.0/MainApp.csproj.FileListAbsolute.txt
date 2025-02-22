@@ -13,3 +13,7 @@ E:\Programs\Cs\DiscordRichPresenceApp\MainApp\obj\Debug\net9.0\refint\MainApp.dl
 E:\Programs\Cs\DiscordRichPresenceApp\MainApp\obj\Debug\net9.0\MainApp.pdb
 E:\Programs\Cs\DiscordRichPresenceApp\MainApp\obj\Debug\net9.0\MainApp.genruntimeconfig.cache
 E:\Programs\Cs\DiscordRichPresenceApp\MainApp\obj\Debug\net9.0\ref\MainApp.dll
+E:\Programs\Cs\DiscordRichPresenceApp\MainApp\bin\Debug\net9.0\DiscordRPC.dll
+E:\Programs\Cs\DiscordRichPresenceApp\MainApp\bin\Debug\net9.0\Newtonsoft.Json.dll
+E:\Programs\Cs\DiscordRichPresenceApp\MainApp\obj\Debug\net9.0\MainApp.csproj.AssemblyReference.cache
+E:\Programs\Cs\DiscordRichPresenceApp\MainApp\obj\Debug\net9.0\MainApp.csproj.Up2Date
