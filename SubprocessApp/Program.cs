@@ -13,76 +13,69 @@ class SubApp
 
     static void Main(string[] args)
     {
-        PrintStartupMessage();
-
-        if (args.Length < 1)
-        {
-            Log("Error: No process name provided.", "ERROR");
-            return;
-        }
-
-        string processName = args[0];
-        var config = LoadConfig(processName);
-
-        if (config == null)
-        {
-            Log($"No configuration found for: {processName}", "ERROR");
-            return;
-        }
-
         try
         {
-            client = new DiscordRpcClient(config.ClientId);
-            client.Initialize();
+            PrintStartupMessage();
 
-            // **アプリが終了した時の処理を登録**
-            AppDomain.CurrentDomain.ProcessExit += (sender, e) => SafeExit();
-            AppDomain.CurrentDomain.UnhandledException += (sender, e) => SafeExit();
-
-            client.SetPresence(new RichPresence()
+            if (args.Length < 1)
             {
-                Details = config.Details ?? "No details available",
-                State = config.State ?? "No state available",
-                Assets = new Assets()
-                {
-                    LargeImageKey = config.LargeImage,
-                    LargeImageText = config.LargeImageText,
-                    SmallImageKey = config.SmallImage,
-                    SmallImageText = config.SmallImageText
-                },
-                Buttons = config.Buttons?.Select(button => new DiscordRPC.Button
-                {
-                    Label = button.Label.Length > 32 ? button.Label.Substring(0, 32) : button.Label,
-                    Url = button.Url
-                }).ToArray(),
-                Timestamps = Timestamps.Now
-            });
-
-            Log($"Rich Presence updated for {processName}. Press Ctrl+C to exit.", "INFO");
-
-            while (true)
-            {
-                client.Invoke();
-
-                // **対象のプロセスがまだ動いているか確認**
-                bool processExists = Process.GetProcessesByName(Path.GetFileNameWithoutExtension(processName)).Any();
-
-                if (!processExists)
-                {
-                    Log($"Process {processName} has exited. Shutting down SubApp...", "WARN");
-                    SafeExit();  // **確実に RPC を削除**
-                    break;
-                }
-
-                System.Threading.Thread.Sleep(5000);
+                Log("Error: No process name provided.", "ERROR");
+                return;
             }
 
-            Log("SubApp is exiting...", "INFO");
+            string processName = args[0];
+            var config = LoadConfig(processName);
+
+            if (config == null)
+            {
+                Log($"No configuration found for: {processName}", "ERROR");
+                return;
+            }
+
+            try
+            {
+                var client = new DiscordRpcClient(config.ClientId);
+                if (!client.Initialize())
+                {
+                    Log("[ERROR] Failed to initialize Discord RPC client!", "ERROR");
+                    return;
+                }
+
+                Log("[INFO] Discord RPC Client initialized successfully.", "INFO");
+
+                while (true)
+                {
+                    bool processExists = Process.GetProcessesByName(Path.GetFileNameWithoutExtension(processName)).Any();
+                    Log($"[DEBUG] Process {processName} exists: {processExists}", "DEBUG");
+
+                    if (!processExists)
+                    {
+                        Log($"[WARN] Process {processName} has exited. Shutting down SubApp...", "WARN");
+                        break;
+                    }
+
+                    client.Invoke();
+                    Thread.Sleep(5000);
+                }
+
+                Log("SubApp is exiting...", "INFO");
+            }
+            catch (Exception innerEx)
+            {
+                Log($"[ERROR] Inner exception: {innerEx.Message}\n{innerEx.StackTrace}", "ERROR");
+            }
         }
         catch (Exception ex)
         {
-            Log($"Unhandled exception: {ex.Message}", "ERROR");
-            SafeExit();  // **例外発生時も RPC を削除**
+            string crashLog = $"[FATAL] SubApp.exe crashed!\n{ex.Message}\n{ex.StackTrace}";
+            File.WriteAllText("subapp_crash.log", crashLog);
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(crashLog); // ← これでコンソールにもエラーを表示
+            Console.ResetColor();
+
+            Console.WriteLine("Press Enter to exit...");
+            Console.ReadLine();
         }
     }
 
