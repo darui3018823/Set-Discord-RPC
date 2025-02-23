@@ -1,4 +1,4 @@
-# Discord Rich Presence マネージャー
+# Discord Rich Presence Manager
 
 このプロジェクトは、特定のアプリケーションが実行されているときに**Discord Rich Presence**を自動的に更新します。
 
