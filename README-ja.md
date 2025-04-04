@@ -1,6 +1,7 @@
 # Discord Rich Presence Manager
 
 このプロジェクトは、特定のアプリケーションが実行されているときに**Discord Rich Presence**を自動的に更新します。
+注意: このリポジトリは問題があり、更新の見通しはございません。
 
 ![GitHub License](https://img.shields.io/github/license/darui3018823/Set-Discord-RPC)
 ![GitHub Repo Size](https://img.shields.io/github/repo-size/darui3018823/Set-Discord-RPC)
